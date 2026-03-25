@@ -24,3 +24,4 @@ O Papel do Java: Este "cérebro" do sistema recebe os alertas de centenas de sen
 Visualização e Alerta (Frontend)
 A camada final é onde o usuário interage com a solução através de uma interface intuitiva feita em HTML e CSS.
 O Mapa de Risco: O sistema consome os dados do banco e atualiza o mapa automaticamente. Se a boia de um bueiro subiu, o ponto correspondente no site muda de cor (ex: de verde para vermelho), avisando a população que aquele local oferece risco de alagamento.
+
