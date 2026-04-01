@@ -18,7 +18,7 @@ Preço estimado para o projeto é de 10mil - 20mil.
 Nossa empresa produz um produto, que notifica locais em alagamento na cidade permitindo, usar outros locais para deslocamento, nós mesmos iremos instalar o produto, por isso a instalação pode demorar, para instalar em outros lugares enquanto não recrutamos candidatos qualificados.
 
 Persona:
-Carla Mendes, de 34 anos é assistente administrativa e tem uma rotina muito corrida, costuma ir sempre ao shopping para pois é perto de seu serviço na cidade de São Carlos, ela usa seu próprio carro pra se locomover. Em um dia comum em seu horário de almoço, Carla estava indo ao shopping da cidade quando de repente começou a chover intensamente, para evitar alagamentos Carla utilizou o site FloodPath, o site avisou que o shopping iria alagar por volta das 15h, alertando sobre possível ilhamento naquele local durante aquele período.
+Carla Mendes, de 34 anos é assistente administrativa e tem uma rotina muito corrida, costuma ir sempre ao shopping para pois é perto de seu serviço na cidade de São Carlos, ela usa seu próprio carro pra se locomover e sempre pesquisa em sites o clima pois odeia chuva. Em um dia comum em seu horário de almoço, Carla estava indo ao shopping da cidade e o céu estava se fechando, para evitar alagamentos futuros Carla utilizou o site FloodPath, o site avisou que o shopping iria alagar por volta das 15h, alertando sobre possível ilhamento naquele local durante aquele período.
 
 Descrição do funcionamento(Sujeito a modificações):
 1. Detecção em Campo (Hardware)
