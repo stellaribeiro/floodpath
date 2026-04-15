@@ -14,8 +14,7 @@ Tecnologias Utilizadas:
 HTML, CSS, Banco de Dados, API + Java,  Arduino e sensores.
 
 Dores do cliente: 
-Preço estimado para o projeto é de 10mil - 20mil.
-Nossa empresa produz um produto, que notifica locais em alagamento na cidade permitindo, usar outros locais para deslocamento, nós mesmos iremos instalar o produto, por isso a instalação pode demorar, para instalar em outros lugares enquanto não recrutamos candidatos qualificados.
+É a vulnerabilidade . O Cliente vive sob a tensão constante de perder seu principal meio de transporte (o carro) e ter sua rotina produtiva interrompida pelo ilhamento . Para ela, a enchente não é apenas um aspecto natural, mas um obstáculo que gera ansiedade emocional , prejuízo financeiro iminente e a frustração de não ter controle sobre seu próprio tempo e segurança ao se deslocar por São Carlos.
 
 Persona:
 Carla Mendes, de 34 anos é assistente administrativa e tem uma rotina muito corrida, costuma ir sempre ao shopping para pois é perto de seu serviço na cidade de São Carlos, ela usa seu próprio carro pra se locomover e sempre pesquisa em sites o clima pois odeia chuva. Em um dia comum em seu horário de almoço, Carla estava indo ao shopping da cidade e o céu estava se fechando, para evitar alagamentos futuros Carla utilizou o site FloodPath, o site avisou que o shopping iria alagar por volta das 15h, alertando sobre possível ilhamento naquele local durante aquele período.
