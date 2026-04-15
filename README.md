@@ -35,4 +35,6 @@ O Mapa de Risco: O sistema consome os dados do banco e atualiza o mapa automatic
 
 LINK Kanban: https://trello.com/invite/b/69c3c228687ddd7a668e7afd/ATTI1d07ded55f05020e8edd83f9ef8b0bb7CE2E105C/kanbanfloodpath
 
-Link figma: https://www.figma.com/site/GomZCG01zlZsQlbBt5EdsR/Sem-t%C3%ADtulo?node-id=0-1&t=qUqMLsR4pZmySZjK-1
+LINK Figma: https://www.figma.com/site/GomZCG01zlZsQlbBt5EdsR/Sem-t%C3%ADtulo?node-id=0-1&t=qUqMLsR4pZmySZjK-1
+
+LINK Principais pontos de alagamentos em São Carlos: https://tietejacare.com.br/wp-content/uploads/2024/07/Mapeamento-de-Areas-de-Alto-e-Muito-Alto-Risco-a-Deslizamentos-e-Inundacoes-Sao-Carlos-SP.pdf
