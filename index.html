@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Path</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+   
+<header class="main-header">
+        <div class="logo">FLOOD<span>PATH</span></div>
+        <nav class="nav-links">
+            <a href="#">Mapa</a>
+            <a href="#">Ajuda</a>
+            <button class="btn-support"><i class="fas fa-headset"></i> Suporte</button>
+        </nav>
+        <button class="btn-sos"><i class="fas fa-phone-alt"></i> SOS EMERGÊNCIA</button>
+    </header>
+
+    <div class="search-area">
+        <div class="search-input-wrap">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" id="destination" placeholder="Para onde você vai? Verifique se o caminho está seguro...">
+        </div>
+        <button class="btn-route" onclick="traceRoute()"><i class="fas fa-route"></i> Traçar Rota Seca</button>
+    </div>
+
+    <main class="main-grid">
+        <aside class="sidebar">
+            <section class="card">
+                <div class="card-header">
+                    <div class="icon-box-blue"><i class="fas fa-city"></i></div>
+                    <h2 style="font-size: 1rem; font-weight: 800;">Situação da Cidade</h2>
+                </div>
+                <div class="status-box">
+                    <span class="status-tag">STATUS</span>
+                    <h3>Estado de Atenção</h3>
+                    <p>Sensores detectaram subida de nível no Rio Principal.</p>
+                </div>
+                
+                <!-- IDs adicionados para conexão futura com o Banco de Dados -->
+                <div class="stat-row">
+                    <span>Vias Interrompidas</span>
+                    <span class="val-red" id="vias-count">03</span>
+                </div>
+                <div class="stat-row">
+                    <span>Pontos de Alagamento</span>
+                    <span class="val-orange" id="alagamentos-count">02</span>
+                </div>
+            </section>
+
+            <section class="card backup-card">
+                <h4 style="font-size: 0.9rem;"><i class="fas fa-exclamation-circle" style="color: var(--light-blue);"></i> Canais de Contingência</h4>
+                <p style="font-size: 0.7rem; opacity: 0.7; margin-top: 10px;">Se o sistema falhar, use os backups:</p>
+                <div class="contact-pill"><i class="fas fa-envelope"></i> suporte@floodpath.com</div>
+                <div class="contact-pill"><i class="fab fa-whatsapp"></i> (11) 99999-9999</div>
+            </section>
+
+            <section class="card emergency-card">
+                <p style="font-size: 10px; font-weight: 900; opacity: 0.8; letter-spacing: 1.2px;">RESGATE IMEDIATO</p>
+                <div class="emergency-row"><span>Defesa Civil</span><span class="badge-num">199</span></div>
+                <div class="emergency-row"><span>Bombeiros</span><span class="badge-num">193</span></div>
+            </section>
+        </aside>
+
+        <div class="main-content">
+            <section class="map-wrapper">
+                <div id="map-container">
+                    <div class="map-placeholder">
+                        <div class="road-h"></div>
+                        <div class="road-v-1"></div>
+                        <div class="road-v-2"></div>
+                        
+                        <div class="api-marker" style="top: 35%; left: 42%;">
+                            <div class="marker-bubble">
+                                <div class="icon-circle" style="color: var(--emergency-red);"><i class="fas fa-water"></i></div>
+                                BLOQUEIO TOTAL
+                            </div>
+                        </div>
+
+                        <div class="api-marker" style="top: 62%; left: 72%;">
+                            <div class="marker-bubble">
+                                <div class="icon-circle" style="color: var(--emergency-red);"><i class="fas fa-exclamation-triangle"></i></div>
+                                NÍVEL SUBINDO
+                            </div>
+                        </div>
+
+                        <div class="api-marker" style="top: 75%; left: 58%;">
+                            <div class="marker-bubble" style="background: var(--action-blue); color: white; border: none;">
+                                VOCÊ ESTÁ AQUI
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-legend">
+                    <div class="legend-item"><span class="dot red"></span> Risco Crítico</div>
+                    <div class="legend-item"><span class="dot blue"></span> Sua Posição</div>
+                    <div class="legend-item"><span class="dot vias"></span> Vias Urbanas</div>
+                </div>
+            </section>
+
+            <section class="protocol-section">
+                <div class="protocol-header">
+                    <div class="icon-box-blue"><i class="fas fa-shield-alt"></i></div>
+                    <h2>Protocolos de Emergência</h2>
+                </div>
+                <div class="protocol-grid">
+                    <div class="protocol-item">
+                        <i class="fas fa-bolt" style="color: #f59e0b;"></i>
+                        <h4>Rede Elétrica</h4>
+                        <p>Desligue a chave geral se a água entrar em casa.</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-car" style="color: var(--emergency-red);"></i>
+                        <h4>Veículos</h4>
+                        <p>Abandone o veículo se o nível subir rapidamente.</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-virus" style="color: var(--action-blue);"></i>
+                        <h4>Saúde</h4>
+                        <p>Evite contato direto com a água da enchente.</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-house-damage" style="color: var(--success-green);"></i>
+                        <h4>Encostas</h4>
+                        <p>Fique alerta a estalos ou rachaduras no solo.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div style="display: flex; align-items: center;">
+            <div class="footer-logo-square"></div>
+            <div>
+                <h4 style="font-weight: 900;">FLOODPATH &copy; 2024</h4>
+                <p style="font-size: 0.75rem; color: #94a3b8;">Tecnologia preventiva.</p>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <div class="team-names">NATHAN · RAFAELA · RYAN · STELLA</div>
+            <div class="contingency-bar">Suporte Técnico: suporte@floodpath.com</div>
+        </div>
+    </footer>
+</body>
+</html>
