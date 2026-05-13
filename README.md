@@ -37,3 +37,5 @@ LINK Kanban: https://trello.com/invite/b/69c3c228687ddd7a668e7afd/ATTI1d07ded55f
 LINK Figma: https://www.figma.com/site/hIjTlZDOEFOgDD40PBg2KJ/Sem-t%C3%ADtulo?node-id=0-1&p=f&t=9Jf4gS7fDOxda0gN-0
 
 LINK Principais pontos de alagamentos em São Carlos: https://tietejacare.com.br/wp-content/uploads/2024/07/Mapeamento-de-Areas-de-Alto-e-Muito-Alto-Risco-a-Deslizamentos-e-Inundacoes-Sao-Carlos-SP.pdf
+
+LINK Diagrama BD:https://drive.google.com/file/d/1Wjedb6wk-1W2dHV3CSUsPAgZ78fTQ6qe/view?usp=sharing
