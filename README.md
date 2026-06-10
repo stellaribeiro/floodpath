@@ -40,4 +40,6 @@ LINK Principais pontos de alagamentos em São Carlos: https://tietejacare.com.br
 
 LINK Diagrama BD: https://blind-magenta-el8dodgp.edgeone.app/FLOODPATH_DIAGRAMA.drawio.png
 
+LINK apresentação Canva: https://canva.link/8s9oo0vytjusc3k
+
 RESULTADO HTML FINAL: https://rafaela0011.github.io/floodpath.js/#
