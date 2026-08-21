@@ -38,8 +38,6 @@ LINK Figma: https://www.figma.com/site/hIjTlZDOEFOgDD40PBg2KJ/Sem-t%C3%ADtulo?no
 
 LINK Principais pontos de alagamentos em São Carlos: https://tietejacare.com.br/wp-content/uploads/2024/07/Mapeamento-de-Areas-de-Alto-e-Muito-Alto-Risco-a-Deslizamentos-e-Inundacoes-Sao-Carlos-SP.pdf
 
-LINK Diagrama BD: https://blind-magenta-el8dodgp.edgeone.app/FLOODPATH_DIAGRAMA.drawio.png
-
 LINK apresentação Canva: https://canva.link/8s9oo0vytjusc3k
 
-RESULTADO HTML FINAL: https://rafaela0011.github.io/floodpath.js/#
+RESULTADO FRONT FINAL: https://rafaela0011.github.io/FloodPath-atualiza-es-07-08/
