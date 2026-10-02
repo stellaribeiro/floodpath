@@ -38,7 +38,7 @@ LINK Figma: https://www.figma.com/site/hIjTlZDOEFOgDD40PBg2KJ/Sem-t%C3%ADtulo?no
 
 LINK Principais pontos de alagamentos em São Carlos: https://tietejacare.com.br/wp-content/uploads/2024/07/Mapeamento-de-Areas-de-Alto-e-Muito-Alto-Risco-a-Deslizamentos-e-Inundacoes-Sao-Carlos-SP.pdf
 
-LINK Excell: https://sesisenaispedu-my.sharepoint.com/:x:/g/personal/nathan_pereira_portalsesisp_org_br/IQAKXhlFNCEMRJtMJdUkqfvRAS9LQ_O1T3BmnqdLUNDJ2io?e=1M44aY
+LINK Excel: https://sesisenaispedu-my.sharepoint.com/:x:/g/personal/nathan_pereira_portalsesisp_org_br/IQAKXhlFNCEMRJtMJdUkqfvRAS9LQ_O1T3BmnqdLUNDJ2io?e=1M44aY
 
 LINK apresentação Canva: https://canva.link/8s9oo0vytjusc3k
 
