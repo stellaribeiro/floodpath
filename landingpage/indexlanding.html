@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodPath - Rota Seca & Segurança em Tempo Real</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styleslanding.css">
+</head>
+<body>
+
+    <div class="header-container">
+        <header class="main-header">
+            <div class="logo">
+                <img src="logo.png" alt="Logo FloodPath" class="logo-img">
+                FLOOD<span>PATH</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#solucao">Como Funciona</a>
+                <a href="#beneficios">Recursos</a>
+                <a href="#faq">Dúvidas</a>
+                <a href="#equipe">Equipe</a>
+            </nav>
+        </header>
+    </div>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge-status">
+                    <span class="pulse-dot"></span> Monitoramento Inteligente em Tempo Real
+                </div>
+                <h1>Fuja das enchentes com a <span>Rota Seca</span>.</h1>
+                <p>
+                    O <strong>FloodPath</strong> cruza dados de sensores e relatórios urbanos para calcular trajetos seguros em dias de chuva forte. Evite pontos de alagamento e chegue ao seu destino com tranquilidade.
+                </p>
+                <div class="hero-proof">
+                    <div class="proof-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Prevenção Ativa</span>
+                    </div>
+                    <div class="proof-item">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Recalculo Instantâneo</span>
+                    </div>
+                    <div class="proof-item">
+                        <i class="fa-solid fa-phone-flip"></i>
+                        <span>SOS Integrado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-mockup-wrapper">
+                <div class="phone-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="phone-screen">
+                        
+                        <!-- Barra de Busca Simulada -->
+                        <div class="app-search-bar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Centro São Carlos...</span>
+                            <i class="fa-solid fa-route btn-icon-route"></i>
+                        </div>
+
+                        <!-- Mapa Vetorial SVG com o Desvio -->
+                        <svg class="map-svg" viewBox="0 0 300 480" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Fundo do Mapa (Blocos da cidade) -->
+                            <rect width="300" height="480" fill="#eef2f6"/>
+                            
+                            <!-- Linha 1 de Quadras -->
+                            <rect x="15" y="20" width="27" height="82" rx="6" fill="#e2e8f0"/>
+                            <rect x="58" y="20" width="84" height="82" rx="6" fill="#e2e8f0"/>
+                            <rect x="158" y="20" width="84" height="82" rx="6" fill="#e2e8f0"/>
+                            <rect x="258" y="20" width="27" height="82" rx="6" fill="#e2e8f0"/>
+
+                            <!-- Linha 2 de Quadras -->
+                            <rect x="15" y="118" width="27" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="58" y="118" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="158" y="118" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="258" y="118" width="27" height="64" rx="6" fill="#e2e8f0"/>
+
+                            <!-- Linha 3 de Quadras (Onde ocorre o alagamento) -->
+                            <rect x="15" y="198" width="27" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="58" y="198" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="158" y="198" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="258" y="198" width="27" height="64" rx="6" fill="#e2e8f0"/>
+
+                            <!-- Linha 4 de Quadras -->
+                            <rect x="15" y="278" width="27" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="58" y="278" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="158" y="278" width="84" height="64" rx="6" fill="#e2e8f0"/>
+                            <rect x="258" y="278" width="27" height="64" rx="6" fill="#e2e8f0"/>
+
+                            <!-- Linha 5 de Quadras -->
+                            <rect x="15" y="358" width="27" height="122" rx="6" fill="#e2e8f0"/>
+                            <rect x="58" y="358" width="84" height="122" rx="6" fill="#e2e8f0"/>
+                            <rect x="158" y="358" width="84" height="122" rx="6" fill="#e2e8f0"/>
+                            <rect x="258" y="358" width="27" height="122" rx="6" fill="#e2e8f0"/>
+
+                            <!-- Malha Rodoviária (Ruas Brancas Horizontais) -->
+                            <path d="M 0,110 L 300,110" stroke="#ffffff" stroke-width="16"/>
+                            <path d="M 0,190 L 300,190" stroke="#ffffff" stroke-width="16"/>
+                            <path d="M 0,270 L 300,270" stroke="#ffffff" stroke-width="16"/>
+                            <path d="M 0,350 L 300,350" stroke="#ffffff" stroke-width="16"/>
+                            
+                            <!-- Malha Rodoviária (Ruas Brancas Verticais) -->
+                            <path d="M 50,0 L 50,480" stroke="#ffffff" stroke-width="16"/>
+                            <path d="M 150,0 L 150,480" stroke="#ffffff" stroke-width="16"/>
+                            <path d="M 250,0 L 250,480" stroke="#ffffff" stroke-width="16"/>
+
+                            <!-- ZONA DE ALAGAMENTO (AVENIDA CENTRAL BLOQUEADA) -->
+                            <circle cx="150" cy="230" r="28" class="flood-hazard-zone"/>
+                            <circle cx="150" cy="230" r="14" fill="#ef4444" opacity="0.8"/>
+                            
+                            <!-- Caminho Original Bloqueado (Tracejado Vermelho) -->
+                            <path d="M 150,270 L 150,190" stroke="#ef4444" stroke-width="4" stroke-dasharray="4,4" fill="none"/>
+
+                            <!-- Ícone Alerta de Bloqueio (Centralizado na Zona) -->
+                            <g transform="translate(143, 223)">
+                                <path d="M 7,0 L 14,14 L 0,14 Z" fill="#ffffff"/>
+                                <rect x="6" y="5" width="2" height="5" fill="#ef4444"/>
+                                <rect x="6" y="11" width="2" height="2" fill="#ef4444"/>
+                            </g>
+
+                            <!-- ROTA SECA COM DESVIO (LINHA AZUL ANIMADA) -->
+                            <path class="route-line" d="M 150,350 L 250,350 L 250,110 L 150,110" fill="none"/>
+
+                            <!-- Marcador de Origem (Você) - Exatamente uma rua antes -->
+                            <circle cx="150" cy="350" r="12" class="marker-user-pulse"/>
+                            <circle cx="150" cy="350" r="6" fill="#2563eb"/>
+
+                            <!-- Marcador de Destino - Exatamente uma rua depois -->
+                            <g transform="translate(140, 86)">
+                                <path d="M 10,0 C 4.5,0 0,4.5 0,10 C 0,17 10,24 10,24 C 10,24 20,17 20,10 C 20,4.5 15.5,0 10,0 Z" fill="#1b365d"/>
+                                <circle cx="10" cy="9" r="4" fill="#ffffff"/>
+                            </g>
+                        </svg>
+
+                        <!-- Card de Status Flutuante no App -->
+                        <div class="app-bottom-card">
+                            <div class="card-status-header">
+                                <span class="tag-secunda"><i class="fa-solid fa-shield-check"></i> Rota 100% Segura</span>
+                                <span class="time-tag">11 min</span>
+                            </div>
+                            <p>Desvio completo: A rota desvia da rua com alagamento utilizando a via paralela livre.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem-section" id="solucao">
+        <div class="section-container">
+            <div class="problem-box">
+                <h2>O perigo invisível das tempestades urbanas</h2>
+                <p>
+                    GPS comuns direcionam veículos pelo caminho mais rápido, mas ignoram se uma via está submersa. Em minutos, motoristas ficam ilhados em pontos críticos. O FloodPath foi criado para fechar essa lacuna e salvar vidas e patrimônios.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="beneficios">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Por que utilizar o FloodPath?</h2>
+                <p>Tecnologia pensada para a segurança e prevenção de desastres.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-route"></i></div>
+                    <h3>Algoritmo Rota Seca</h3>
+                    <p>Traça caminhos alternativos automaticamente, desviando de áreas com risco iminente ou confirmado de alagamento.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <h3>Monitoramento Contínuo</h3>
+                    <p>Integração com sensores de nível de rios e alertas da Defesa Civil para constante atualização das vias.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-medical"></i></div>
+                    <h3>Botão SOS Emergência</h3>
+                    <p>Acesso rápido com um toque para discagem direta da Defesa Civil (199) e Corpo de Bombeiros (193).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="como-funciona">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>3 Passos para navegar em segurança</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Insira o Destino</h3>
+                    <p>Digite para onde deseja ir através da nossa interface simplificada.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Análise de Risco</h3>
+                    <p>O sistema cruza seu trajeto com as áreas de risco crítico em tempo real.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Siga a Rota Seca</h3>
+                    <p>Navegue com a certeza de vias desobstruídas e seguras até o seu destino.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO FAQ ATUALIZADA -->
+    <section class="faq" id="faq">
+        <div class="section-container">
+            <div class="section-title faq-header-title">
+                <h2><i class="fa-solid fa-circle-question title-icon"></i> Dúvidas Frequentes</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span><i class="fa-solid fa-caret-down arrow-icon"></i> Como funcionam os alertas em tempo real?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O FloodPath monitora continuamente os sensores nos pontos críticos (ex: Cristo e SESC). Quando o nível da água atinge os estados de ATENÇÃO ou CRÍTICO, as rotas que passam por esses locais são bloqueadas automaticamente para sua segurança.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span><i class="fa-solid fa-caret-down arrow-icon"></i> Como posso reportar um alagamento?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você pode utilizar o botão "Reportar Foto Inundação" no cabeçalho. Basta selecionar o local afetado, tirar ou carregar a foto e enviar. A foto ficará visível no mapa para outros usuários.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span><i class="fa-solid fa-caret-down arrow-icon"></i> O que fazer se a minha rota estiver bloqueada?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ao solicitar uma rota para uma área com risco de alagamento, nosso sistema tenta recalcular um caminho alternativo seguro por vias secas. Caso não haja caminho seguro, o sistema emitirá um alerta visual e sonoro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO EQUIPE - FOTOS CLARAS SEM SOMBRA -->
+    <section class="team-section" id="equipe">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Nossa Equipe</h2>
+                <p>Conheça os desenvolvedores por trás da criação do projeto FloodPath.</p>
+            </div>
+            
+            <div class="team-row">
+                <!-- RYAN -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="ryan.jpg" alt="Foto do Ryan" onerror="this.src='https://via.placeholder.com/400x500/ffffff/1b365d?text=Ryan'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ryan</h3>
+                        <span class="team-role">Líder & Back-end</span>
+                        <p>Responsável pelo desenvolvimento back-end, programação dos sensores e montagem do hardware integrado ao ESP-32.</p>
+                    </div>
+                </div>
+
+                <!-- RAFAELA -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="rafa.jpg" alt="Foto da Rafaela" onerror="this.src='https://via.placeholder.com/400x500/ffffff/1b365d?text=Rafaela'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Rafaela</h3>
+                        <span class="team-role">Full Stack</span>
+                        <p>Desenvolveu o front-end da aplicação e prestou suporte técnico geral e auxílio integrado a todas as frentes do projeto.</p>
+                    </div>
+                </div>
+
+                <!-- NATHAN -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="nathan.jpg" alt="Foto do Nathan" onerror="this.src='https://via.placeholder.com/400x500/ffffff/1b365d?text=Nathan'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nathan</h3>
+                        <span class="team-role">Banco de Dados & IoT</span>
+                        <p>Estruturou a arquitetura do banco de dados e colaborou diretamente na programação IoT e integração dos sensores com o ESP-32.</p>
+                    </div>
+                </div>
+
+                <!-- STELLA -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="stella.jpg" alt="Foto da Stella" onerror="this.src='https://via.placeholder.com/400x500/ffffff/1b365d?text=Stella'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Stella</h3>
+                        <span class="team-role">Analista & Designer</span>
+                        <p>Conduziu a análise de requisitos, elaborou a identidade visual (UX/UI) do sistema e auxiliou na construção da maquete física.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="section-container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo FloodPath" class="logo-img">
+                    FLOOD<span>PATH</span>
+                </div>
+                <p>Tecnologia e inovação para prevenção de desastres urbanos.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://floodpath.com">Abrir Aplicação</a>
+                <a href="#solucao">Sobre o Projeto</a>
+                <a href="#equipe">Equipe</a>
+                <a href="mailto:suporte@floodpath.com">Contato</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FloodPath. Todos os direitos reservados. Projeto Acadêmico / Utilitário.</p>
+        </div>
+    </footer>
+</body>
+</html>
