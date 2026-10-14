@@ -1,98 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flood Path</title>
+    <title>FloodPath - Monitoramento de Enchentes</title>
+    <!-- CSS da Aplicação -->
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <!-- FontAwesome Ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Bibliotecas Externas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.3.1/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v10.3.1/dist/ol.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Scripts do Projeto na Ordem Correta -->
+    <script src="voz.js" defer></script>
+    <script src="mapa.js" defer></script>
+    <script src="main.js" defer></script>
+    <script src="relatorio.js" defer></script>
+    <script src="pesquisa.js" defer></script>
+    <script src="historico.js" defer></script>
+    <script src="telefone.js" defer></script>
+    <script src="compartilhamento.js" defer></script>
+    <script src="fotos.js" defer></script>
+    
 </head>
 <body>
-   
-<header class="main-header">
+    <!-- CONTAINER PARA POP-UPS E ALERTAS DE BLOQUEIO DA ROTA -->
+    <div id="mensagem-sistema"></div>
+
+    <header class="main-header">
         <div class="logo">FLOOD<span>PATH</span></div>
+        
         <nav class="nav-links">
-            <a href="#">Mapa</a>
-            <a href="#">Ajuda</a>
+            <a href="#" id="link-mapa" onclick="event.preventDefault(); toggleFullscreen();">Mapa</a>
             <button class="btn-support"><i class="fas fa-headset"></i> Suporte</button>
         </nav>
-        <button class="btn-sos"><i class="fas fa-phone-alt"></i> SOS EMERGÊNCIA</button>
+
+        <!-- Agrupamento dos botões à direita -->
+        <div class="header-actions">
+            <!-- BOTÃO DO RELATÓRIO DE ALAGAMENTOS (Ao lado do SOS) -->
+            <button class="btn-relatorio" onclick="abrirRelatorioPronto()">
+                <i class="fas fa-file-alt"></i> Relatório de Alagamentos
+            </button>
+
+            <div class="sos-dropdown-wrapper" style="position: relative;">
+                <button class="btn-sos" onclick="toggleMenuSOS(event)">
+                    <i class="fas fa-phone-alt"></i> SOS EMERGÊNCIA
+                </button>
+                
+                <!-- Menu de escolha com os dois números -->
+                <div id="menu-sos" class="sos-menu-popover" style="display: none;">
+                    <button class="sos-option-btn" onclick="iniciarChamadaSOS('Bombeiros', '193')">
+                        <i class="fas fa-fire-extinguisher"></i>
+                        <div>
+                            <strong>Bombeiros</strong>
+                            <span>Ligar para 193</span>
+                        </div>
+                    </button>
+                    <button class="sos-option-btn" onclick="iniciarChamadaSOS('Defesa Civil', '199')">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>Defesa Civil</strong>
+                            <span>Ligar para 199</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <button class="btn-reportar-foto" onclick="abrirModalReportarFoto()">
+                <i class="fas fa-camera"></i> Reportar Foto Inundação
+            </button>
+        </div>
     </header>
 
+    <!-- BARRA DE PESQUISA COM SUGESTÕES ESTILO WAZE -->
     <div class="search-area">
         <div class="search-input-wrap">
-            <i class="fas fa-map-marker-alt"></i>
-            <input type="text" id="destination" placeholder="Para onde você vai? Verifique se o caminho está seguro...">
+            <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #3b82f6;"></i>
+            <input type="text" id="destination" placeholder="Digite um destino (ex: Senai, Shopping)..." autocomplete="off" oninput="buscarSugestoes(this.value)">
         </div>
-        <button class="btn-route" onclick="traceRoute()"><i class="fas fa-route"></i> Traçar Rota Seca</button>
+        <button class="btn-route" onclick="tracarR()"><i class="fas fa-route"></i> Traçar Rota Seca</button>
+       
+        <!-- DROP-DOWN DE SUGESTÕES DA PESQUISA -->
+        <div id="suggestions-box" class="suggestions-dropdown"></div>
     </div>
 
     <main class="main-grid">
         <aside class="sidebar">
+            <!-- CARD DINÂMICO COM ABAS DE NAVEGAÇÃO (GERAL / CRISTO / SESC) -->
             <section class="card">
+                <div class="sensor-tabs" style="display: flex; gap: 6px; margin-bottom: 12px;">
+                    <button type="button" class="tab-btn active" onclick="alternarAbaSensor('geral', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #3b82f6; color: white;">Geral</button>
+                    <button type="button" class="tab-btn" onclick="alternarAbaSensor('1', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #e2e8f0; color: #475569;">Cristo</button>
+                    <button type="button" class="tab-btn" onclick="alternarAbaSensor('2', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #e2e8f0; color: #475569;">SESC</button>
+                </div>
+
                 <div class="card-header">
-                    <div class="icon-box-blue"><i class="fas fa-city"></i></div>
-                    <h2 style="font-size: 1rem; font-weight: 800;">Situação da Cidade</h2>
+                    <div class="icon-box-blue"><i class="fas fa-city" id="icone-card-sensor"></i></div>
+                    <h2 id="titulo-card-sensor" style="font-size: 1rem; font-weight: 800;">Situação da Cidade</h2>
                 </div>
+
                 <div class="status-box">
-                    <span class="status-tag">STATUS</span>
-                    <h3>Estado de Atenção</h3>
-                    <p>Sensores detectaram subida de nível no Rio Principal.</p>
+                    <span class="status-tag" id="tag-sensor">STATUS GERAL</span>
+                    <h3 id="status-cidade-titulo">Estado Normal</h3>
+                    <p id="status-cidade-descricao">Carregando dados dos sensores...</p>
                 </div>
-                
-                <!-- IDs adicionados para conexão futura com o Banco de Dados -->
+               
                 <div class="stat-row">
                     <span>Vias Interrompidas</span>
-                    <span class="val-red" id="vias-count">03</span>
+                    <span class="val-red" id="vias-count">00</span>
                 </div>
                 <div class="stat-row">
                     <span>Pontos de Alagamento</span>
-                    <span class="val-orange" id="alagamentos-count">02</span>
+                    <span class="val-orange" id="alagamentos-count">00</span>
                 </div>
             </section>
 
-            <section class="card backup-card">
-                <h4 style="font-size: 0.9rem;"><i class="fas fa-exclamation-circle" style="color: var(--light-blue);"></i> Canais de Contingência</h4>
-                <p style="font-size: 0.7rem; opacity: 0.7; margin-top: 10px;">Se o sistema falhar, use os backups:</p>
-                <div class="contact-pill"><i class="fas fa-envelope"></i> suporte@floodpath.com</div>
-                <div class="contact-pill"><i class="fab fa-whatsapp"></i> (11) 99999-9999</div>
-            </section>
+            <!-- CARD: HISTÓRICO DE LEITURAS (GRÁFICO E TABELA DO BANCO COM FILTRO DE ABAS) -->
+            <section class="card">
+                <div class="historico-tabs" style="display: flex; gap: 6px; margin-bottom: 12px;">
+                    <button type="button" class="tab-btn-hist active" onclick="alternarAbaHistorico('geral', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #3b82f6; color: white;">Geral</button>
+                    <button type="button" class="tab-btn-hist" onclick="alternarAbaHistorico('SENSOR_01', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #e2e8f0; color: #475569;">Cristo</button>
+                    <button type="button" class="tab-btn-hist" onclick="alternarAbaHistorico('SENSOR_02', this)" style="flex: 1; padding: 6px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer; background: #e2e8f0; color: #475569;">SESC</button>
+                </div>
 
-            <section class="card emergency-card">
-                <p style="font-size: 10px; font-weight: 900; opacity: 0.8; letter-spacing: 1.2px;">RESGATE IMEDIATO</p>
-                <div class="emergency-row"><span>Defesa Civil</span><span class="badge-num">199</span></div>
-                <div class="emergency-row"><span>Bombeiros</span><span class="badge-num">193</span></div>
+                <div class="card-header">
+                    <div class="icon-box-blue"><i class="fas fa-chart-line"></i></div>
+                    <h2 style="font-size: 1rem; font-weight: 800;" id="titulo-historico">Histórico de Leituras</h2>
+                </div>
+
+                <div style="position: relative; height: 180px; width: 100%; margin-bottom: 15px;">
+                    <canvas id="graficoHistorico"></canvas>
+                </div>
+
+                <div style="max-height: 150px; overflow-y: auto; font-size: 0.75rem;">
+                    <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #e2e8f0; color: #64748b;">
+                                <th style="padding: 4px;">Sensor</th>
+                                <th style="padding: 4px;">Nível</th>
+                                <th style="padding: 4px;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-historico-body">
+                            <tr>
+                                <td colspan="3" style="text-align: center; padding: 10px; color: #94a3b8;">Carregando dados...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </aside>
 
         <div class="main-content">
             <section class="map-wrapper">
                 <div id="map-container">
-                    <div class="map-placeholder">
-                        <div class="road-h"></div>
-                        <div class="road-v-1"></div>
-                        <div class="road-v-2"></div>
-                        
-                        <div class="api-marker" style="top: 35%; left: 42%;">
-                            <div class="marker-bubble">
-                                <div class="icon-circle" style="color: var(--emergency-red);"><i class="fas fa-water"></i></div>
-                                BLOQUEIO TOTAL
-                            </div>
-                        </div>
+                    <button id="btn-fullscreen" onclick="toggleFullscreen()" title="Expandir Mapa">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
 
-                        <div class="api-marker" style="top: 62%; left: 72%;">
-                            <div class="marker-bubble">
-                                <div class="icon-circle" style="color: var(--emergency-red);"><i class="fas fa-exclamation-triangle"></i></div>
-                                NÍVEL SUBINDO
-                            </div>
-                        </div>
-
-                        <div class="api-marker" style="top: 75%; left: 58%;">
-                            <div class="marker-bubble" style="background: var(--action-blue); color: white; border: none;">
-                                VOCÊ ESTÁ AQUI
-                            </div>
-                        </div>
+                <div id="overlay-bloqueio" class="status-critico">
+                    <div class="marker-bubble">
+                        <div class="icon-circle"><i class="fas fa-water"></i></div>
+                        <span id="label-bloqueio">ÁREA INUNDADA</span>
                     </div>
+                </div>
+
+                <div id="overlay-subindo" class="status-critico">
+                    <div class="marker-bubble">
+                        <div class="icon-circle"><i class="fas fa-exclamation-triangle"></i></div>
+                        <span id="label-subindo">ÁREA INUNDADA</span>
+                    </div>
+                </div>
+
+                <div id="overlay-user" class="api-marker">
+                    <div class="marker-bubble">
+                        VOCÊ ESTÁ AQUI
+                    </div>
+                </div>
+
+                <div id="overlay-destino">
+                    <div class="destino-icon"><i class="fas fa-flag-checkered"></i></div>
+                    <span id="label-destino" class="destino-label">DESTINO</span>
                 </div>
 
                 <div class="map-legend">
@@ -105,7 +196,7 @@
             <section class="protocol-section">
                 <div class="protocol-header">
                     <div class="icon-box-blue"><i class="fas fa-shield-alt"></i></div>
-                    <h2>Protocolos de Emergência</h2>
+                    <h2>Em Caso De Inudação Siga Os Protocolos de Emergência</h2>
                 </div>
                 <div class="protocol-grid">
                     <div class="protocol-item">
@@ -137,7 +228,7 @@
         <div style="display: flex; align-items: center;">
             <div class="footer-logo-square"></div>
             <div>
-                <h4 style="font-weight: 900;">FLOODPATH &copy; 2024</h4>
+                <h4 style="font-weight: 900;">FLOODPATH &copy; 2026</h4>
                 <p style="font-size: 0.75rem; color: #94a3b8;">Tecnologia preventiva.</p>
             </div>
         </div>
@@ -146,5 +237,132 @@
             <div class="contingency-bar">Suporte Técnico: suporte@floodpath.com</div>
         </div>
     </footer>
+
+    <!-- MODAL SOS ESTILO IOS -->
+    <div id="sos-modal" class="ios-incoming-call">
+        <div class="ios-blur-bg"></div>
+        <div class="ios-call-container">
+            <div class="ios-contact-info">
+                <h1 id="sos-caller-name" class="ios-caller-name">Bombeiros (193)</h1>
+                <p id="sos-status" class="ios-call-status">ligando...</p>
+                <div id="sos-timer" class="ios-ios-timer">00:00</div>
+            </div>
+
+            <div class="ios-actions-grid">
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-microphone-slash"></i></button>
+                    <span>mudo</span>
+                </div>
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-th"></i></button>
+                    <span>teclado</span>
+                </div>
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-volume-up"></i></button>
+                    <span>alto-falante</span>
+                </div>
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-plus"></i></button>
+                    <span>add. chamada</span>
+                </div>
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-video"></i></button>
+                    <span>FaceTime</span>
+                </div>
+                <div class="ios-grid-item">
+                    <button class="ios-round-btn"><i class="fas fa-user-circle"></i></button>
+                    <span>contatos</span>
+                </div>
+            </div>
+
+            <div class="ios-end-call-container">
+                <button id="btn-cancel-sos" class="ios-end-call-btn">
+                    <i class="fas fa-phone-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE DE COMPARTILHAMENTO WHATSAPP -->
+    <button class="whatsapp-sticky-tab" onclick="compartilharAlertaWhatsApp()" title="Compartilhar Alerta no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+    </button>
+
+    <!-- MODAL COM SELEÇÃO DE LOCAL PARA REPORTAR FOTO -->
+    <div id="modal-reportar-foto" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-camera"></i> Enviar Foto da Inundação</h3>
+                <button class="btn-fechar" type="button" onclick="fecharModalReportarFoto()">&times;</button>
+            </div>
+            <form id="form-reportar-foto" onsubmit="enviarRelatorioFoto(event)">
+                <label for="select-local">Local Afetado</label>
+                <select id="select-local" required>
+                    <option value="" disabled selected>Escolha o ponto de alagamento...</option>
+                    <option value="CRISTO">Rotatória do Cristo</option>
+                    <option value="SESC">SESC São Carlos</option>
+                </select>
+
+                <label for="input-foto">Selecione ou tire uma foto</label>
+                <div class="upload-area-box">
+                    <input type="file" id="input-foto" accept="image/*" capture="environment" required onchange="previewFoto(event)">
+                </div>
+
+                <div id="box-preview-foto" style="display:none; text-align:center;">
+                    <img id="img-preview" src="" alt="Pré-visualização">
+                </div>
+
+                <label for="input-descricao">Observação / Nível Aparente</label>
+                <input type="text" id="input-descricao" placeholder="Ex: Água subindo rapidamente perto do canteiro" required>
+
+                <button type="submit" class="btn-confirmar-envio">
+                    <i class="fas fa-paper-plane"></i> Publicar Foto no Mapa
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DO RELATÓRIO DE ALAGAMENTOS -->
+    <div id="modal-relatorio" class="modal-overlay-relatorio" onclick="fecharModalRelatorioFora(event)">
+        <div class="modal-card-relatorio" onclick="event.stopPropagation()">
+            <div class="modal-header-relatorio">
+                <div class="header-title-wrap">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>Relatório Geral de Alagamentos</h3>
+                </div>
+                <button class="btn-fechar-relatorio" onclick="fecharModalRelatorio()">&times;</button>
+            </div>
+            
+            <div id="conteudo-relatorio-modal" class="modal-body-relatorio">
+                <!-- Conteúdo injetado via JS -->
+            </div>
+
+            <div class="modal-footer-relatorio">
+                <button type="button" class="btn-imprimir-relatorio" onclick="window.print()">
+                    <i class="fas fa-print"></i> Baixar / Imprimir PDF
+                </button>
+                <button type="button" class="btn-fechar-sec-relatorio" onclick="fecharModalRelatorio()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA VISUALIZAR A FOTO EM DETALHE -->
+    <div id="modal-visualizar-foto" class="modal-foto-overlay" onclick="fecharModalVisualizarFotoFora(event)">
+        <div class="modal-foto-card" onclick="event.stopPropagation()">
+            <div class="modal-foto-header">
+                <h4><i class="fas fa-camera" style="color: #8b5cf6;"></i> Foto Reportada</h4>
+                <button type="button" class="btn-fechar-foto" onclick="fecharModalVisualizarFoto()">&times;</button>
+            </div>
+            <div class="modal-foto-body">
+                <img id="img-modal-view" src="" alt="Foto do Alagamento">
+            </div>
+            <div class="modal-foto-info">
+                <p id="desc-modal-view"></p>
+                <span id="hora-modal-view"></span>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
