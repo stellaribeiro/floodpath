@@ -2,7 +2,7 @@
 // CONFIGURAÇÃO DO LINK DO PROJETO EM FUNCIONAMENTO
 // Quando o link mudar, altere apenas a URL abaixo!
 // =================================================================
-const LINK_DO_PROJETO = "https://rafaela0011.github.io/FloodPath-atualiza-es-07-08/";
+const LINK_DO_PROJETO = "http://rafaela0011.github.io/FloodPathAtualizadoOutubro/";
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Funcionalidade do Acordeão FAQ
