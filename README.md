@@ -43,3 +43,5 @@ LINK Excel: https://sesisenaispedu-my.sharepoint.com/:x:/g/personal/nathan_perei
 LINK apresentação Canva: https://canva.link/8s9oo0vytjusc3k
 
 RESULTADO FRONT FINAL: https://rafaela0011.github.io/FloodPath-atualiza-es-07-08/
+
+LANDING PAGE:https://kapooll.github.io/Landing-page-floodpath/
