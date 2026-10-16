@@ -43,30 +43,39 @@ body {
     box-shadow: 0 10px 25px rgba(27, 54, 93, 0.2);
 }
 
+/* =========================================================================
+   AJUSTE DA LOGO
+   ========================================================================= */
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: -0.5px;
+    letter-spacing: 0px;
     color: var(--white);
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    line-height: 1;
+    gap: 8px; /* Espaço entre a gota e o texto */
 }
 
 .logo-img {
-    height: 70px;
+    height: 50px;
     width: auto;
     object-fit: contain;
     border-radius: 50%;
+    display: block;
+    transform: translateY(-2px); /* Puxa a gota para cima, alinhando o texto ao centro/baixo da gota */
 }
 
 .logo span {
     color: var(--light-blue);
+    margin-left: -7px; /* Puxa a palavra PATH para ficar colada no FLOOD */
 }
 
+/* O resto do código permanece igual */
 .nav-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 25px;
 }
 
 .nav-links a {
@@ -137,7 +146,7 @@ body {
 .hero-content p {
     font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .hero-proof {
@@ -521,7 +530,7 @@ body {
 }
 
 /* =========================================================================
-   SEÇÃO EQUIPE - FOTOS CLARAS SEM SOMBRA
+   SEÇÃO EQUIPE
    ========================================================================= */
 
 .team-section {
@@ -561,7 +570,6 @@ body {
     left: 0;
 }
 
-/* Foto com brilho/iluminação total no estado normal */
 .team-photo img {
     width: 100%;
     height: 100%;
@@ -576,7 +584,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Informações e fundo escuro que só aparecem ao passar o mouse */
 .team-info {
     position: absolute;
     bottom: 0;
@@ -695,6 +702,50 @@ body {
     font-size: 0.8rem;
 }
 
+/* =========================================================================
+   ESTILIZAÇÃO DOS BOTÕES
+   ========================================================================= */
+
+.btn-acessar-sistema {
+    background-color: var(--action-blue);
+    color: var(--white) !important;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-acessar-sistema:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.hero-cta {
+    margin-bottom: 35px;
+}
+
+.btn-primario {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--action-blue);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primario:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+    color: var(--white);
+}
+
 @media (max-width: 1024px) {
     .team-row {
         grid-template-columns: repeat(2, 1fr);
@@ -720,5 +771,8 @@ body {
     }
     .team-row {
         grid-template-columns: 1fr;
+    }
+    .btn-acessar-sistema {
+        display: none;
     }
 }
