@@ -121,9 +121,3 @@ RNF01 - Usabilidade: A interface gráfica deve ser responsiva e legível em disp
 RNF02 - Desempenho: A API Java deve processar as leituras do ultrassom e responder às requisições do Front-end em menos de 2 segundos.
 RNF03 - Disponibilidade: O sistema deve manter uptime elevado durante tempestades e picos de acessos na cidade.
 
-📊 **9. Avaliação do Projeto (KPIs e Métricas)**
-Precisão na Indicação de Alagamentos: Alcançar 95% de exatidão entre o nível detectado pelo sensor ultrassônico e a condição real do local. (Métrica: Medição física de campo vs. indicador na tela).
-Tempo de Latência End-to-End: Manter o tempo entre a leitura do ultrassom no ESP-32 e a atualização no mapa do site abaixo de 5 segundos. (Métrica: Timestamp de envio do ESP-32 x Timestamp de renderização na Fetch API).
-Engajamento e Utilidade com a Persona: Testar o mapa com moradores de São Carlos para validar a usabilidade em desviar de áreas de risco. (Métrica: Taxa de aprovação em pesquisas de satisfação).
-Disponibilidade da Plataforma: Garantir 99% de tempo de funcionamento do servidor durante períodos de chuvas intensas. (Métrica: Monitoramento de uptime da API Java e da aplicação web).
-
