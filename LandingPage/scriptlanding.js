@@ -1,5 +1,5 @@
 // Link do sistema em funcionamento (atualiza todos os botões .link-sistema)
-const LINK_DO_PROJETO = "https://rafaela0011.github.io/FloodPathAtualizadoOutubro/";
+const LINK_DO_PROJETO = "https://rafaela0011.github.io/FloodPathFinal/";
 
 const ETAPAS = [
     { imagem: "inicio.webp", titulo: "Base e relevo", texto: "Preparação da base, modelagem do relevo e delimitação inicial do espaço utilizando massa e materiais base.", alt: "Início da maquete: base de madeira com terra, massa azul modelando o relevo e uma ilha circular ao centro" },
