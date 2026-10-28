@@ -1104,15 +1104,15 @@ button {
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
+.section-container {
+    width: min(1200px, 100% - 2.5rem);
+    margin-inline: auto;
+}
+
 .team-section .section-title {
     max-width: 760px;
     margin: 0 auto 2.5rem;
     text-align: center;
-}
-
-.team-section .section-title p {
-    margin: 0.75rem auto 0;
-    max-width: 42rem;
 }
 
 .team-row {
@@ -1444,6 +1444,15 @@ button {
     .equipe-grade {
         grid-template-columns: repeat(2, minmax(0, 1fr))
     }
+
+    .team-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .team-card {
+        height: clamp(300px, 44vw, 420px);
+    }
 }
 
 @media (max-width:760px) {
@@ -1455,8 +1464,22 @@ button {
 @media (max-width:520px) {
 
     .recortes,
-    .equipe-grade {
+    .equipe-grade,
+    .team-row {
         grid-template-columns: 1fr
+    }
+
+    .team-card {
+        height: clamp(280px, 76vw, 360px);
+    }
+
+    .team-photo img {
+        object-position: center top;
+    }
+
+    .team-info {
+        min-height: 88px;
+        height: 88px;
     }
 
     .membro img {
