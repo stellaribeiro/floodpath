@@ -1,3 +1,5 @@
+<img width="500" height="679" alt="unnamed" src="https://github.com/user-attachments/assets/a75986eb-2421-4c28-b431-5ad6d17b9b0b" />
+
 FloodPath - Sistema de Monitoramento e Alerta de Alagamentos em Tempo RealO FloodPath é uma solução tecnológica que integra Internet das Coisas (IoT) e desenvolvimento web para monitorar pontos críticos de alagamento na cidade de São Carlos (SP). O sistema fornece informações e alertas em tempo real para evitar que motoristas e pedestres fiquem ilhados durante tempestades.
 
 📌 **Informações Gerais e EquipeNome do Projeto: FloodPathEquipe (Nexus Four)**
@@ -12,18 +14,16 @@ Nathan Pereira: Administrador de Banco de Dados (DBA)
 
 🔗 **Links Úteis e Acesso**
 
-🌐 Aplicação Frontend Final: Acessar FloodPath App
+🌐 Aplicação Frontend Final: **([Acessar FloodPath App](https://rafaela0011.github.io/FloodPathFinal/)**
 
 🛬 Landing Page:**[Acessar Landing Page](https://kapooll.github.io/Landing-page-floodpath/)**
 
-🎨 Protótipo (Figma): Acessar Design no Figma
+📋 Gestão do Projeto (Trello): **[Acessar Quadro Kanban](https://trello.com/b/FotNUUH5)** 
 
-📋 Gestão do Projeto (Trello): Quadro Kanban
+📊 Apresentação: Slides no Canva: **[Acessar Canva](https://www.canva.com/design/DAHMK9Jo8pQ/UobYloi3jmUTu1iBlMoIjw/edit)** 
 
-📊 Apresentação: Slides no Canva
-
-📑 Planilha de Controle: Acessar no OneDrive/Excel
-
+📑 Planilha de Controle: **[Acessar Planilha de Controle](https://sesisenaispedu-my.sharepoint.com/:x:/r/personal/nathan_pereira_portalsesisp_org_br/_layouts/15/Doc.aspx?sourcedoc=%7B45195e0a-2134-440c-9b4c-25d524a9fbd1%7D&action=default
+)**
 🗺️ Referência Técnica: Mapeamento de Áreas de Risco em São Carlos (PDF)
 
 
