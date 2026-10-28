@@ -14,7 +14,7 @@ Nathan Pereira: Administrador de Banco de Dados (DBA)
 
 🌐 Aplicação Frontend Final: Acessar FloodPath App
 
-🛬 Landing Page: Acessar Landing Page
+🛬 Landing Page:**[Acessar Landing Page](https://kapooll.github.io/Landing-page-floodpath/)**
 
 🎨 Protótipo (Figma): Acessar Design no Figma
 
