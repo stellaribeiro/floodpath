@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Rios - Flood Path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .status-normal { background-color: #dcfce7; color: #166534; }
+        .status-atencao { background-color: #fef9c3; color: #854d0e; }
+        .status-critico { background-color: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Flood Path</h1>
+                <p class="text-gray-600">Monitoramento de Níveis de Rios em Tempo Real</p>
+            </div>
+            <button onclick="fetchData()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                Atualizar Dados
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" id="stats-container">
+            <!-- Stats will be injected here -->
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Sensor</th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Nível (m)</th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Distância (km)</th>
+                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Data/Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table" class="divide-y divide-gray-200">
+                    <!-- Rows will be injected here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/rios');
+                const data = await response.json();
+                updateUI(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                alert('Erro ao carregar dados do servidor.');
+            }
+        }
+
+        function updateUI(data) {
+            const tableBody = document.getElementById('data-table');
+            const statsContainer = document.getElementById('stats-container');
+
+            tableBody.innerHTML = '';
+
+            let criticoCount = 0;
+            let atencaoCount = 0;
+
+            data.forEach(item => {
+                const statusClass = `status-${item.status.toLowerCase().trim()}`;
+                if (item.status === 'CRÍTICO') criticoCount++;
+                if (item.status === 'ATENÇÃO') atencaoCount++;
+
+                const row = `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">${item.sensorId}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">${item.nivelAgua}m</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusClass}">
+                                ${item.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">${item.distancia || 'N/A'} km</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500 text-sm">${new Date(item.dataHora).toLocaleString()}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            statsContainer.innerHTML = `
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                    <p class="text-sm text-gray-500 uppercase font-bold">Total de Leituras</p>
+                    <p class="text-3xl font-bold text-gray-800">${data.length}</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-500">
+                    <p class="text-sm text-gray-500 uppercase font-bold">Em Atenção</p>
+                    <p class="text-3xl font-bold text-gray-800">${atencaoCount}</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                    <p class="text-sm text-gray-500 uppercase font-bold">Críticos</p>
+                    <p class="text-3xl font-bold text-gray-800">${criticoCount}</p>
+                </div>
+            `;
+        }
+
+        // Initial load
+        fetchData();
+    </script>
+</body>
+</html>
