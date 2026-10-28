@@ -25,7 +25,7 @@ Nathan Pereira: Administrador de Banco de Dados (DBA)
 📑 Planilha de Controle: **[Acessar Planilha de Controle](https://sesisenaispedu-my.sharepoint.com/:x:/r/personal/nathan_pereira_portalsesisp_org_br/_layouts/15/Doc.aspx?sourcedoc=%7B45195e0a-2134-440c-9b4c-25d524a9fbd1%7D&action=default
 )**
 
-🗺️ Referência Técnica: Mapeamento de Áreas de Risco em São Carlos (PDF)
+🗺️ Referência Técnica: Mapeamento de Áreas de Risco em São Carlos (PDF) https://drive.google.com/file/d/1vR1L2_l8O7wPz2BOEyt5utUdbxp9kjbE/view?usp=sharing
 
 
 👤 **Persona e Dores do Cliente**
